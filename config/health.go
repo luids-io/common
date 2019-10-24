@@ -7,9 +7,10 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/luids-io/common/util"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
+
+	"github.com/luids-io/common/util"
 )
 
 // HealthCfg stores http health server preferences
@@ -20,7 +21,7 @@ type HealthCfg struct {
 }
 
 // SetPFlags setups posix flags for commandline configuration
-func (cfg *HealthCfg) SetPFlags(prefix string) {
+func (cfg *HealthCfg) SetPFlags(short bool, prefix string) {
 	aprefix := ""
 	if prefix != "" {
 		aprefix = prefix + "."

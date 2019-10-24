@@ -7,9 +7,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/luids-io/common/util"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
+
+	"github.com/luids-io/common/util"
 )
 
 // APIServicesCfg stores services
@@ -20,7 +21,7 @@ type APIServicesCfg struct {
 }
 
 // SetPFlags setups posix flags for commandline configuration
-func (cfg *APIServicesCfg) SetPFlags(prefix string) {
+func (cfg *APIServicesCfg) SetPFlags(short bool, prefix string) {
 	aprefix := ""
 	if prefix != "" {
 		aprefix = prefix + "."

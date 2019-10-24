@@ -7,10 +7,11 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/luids-io/common/util"
 	"github.com/luisguillenc/grpctls"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
+
+	"github.com/luids-io/common/util"
 )
 
 // ServerCfg stores server preferences
@@ -22,11 +23,9 @@ type ServerCfg struct {
 }
 
 // SetPFlags setups posix flags for commandline configuration
-func (cfg *ServerCfg) SetPFlags(prefix string) {
-	short := true
+func (cfg *ServerCfg) SetPFlags(short bool, prefix string) {
 	aprefix := ""
 	if prefix != "" {
-		short = false
 		aprefix = prefix + "."
 	}
 	if short {

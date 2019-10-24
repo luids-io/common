@@ -20,11 +20,9 @@ type ClientCfg struct {
 }
 
 // SetPFlags setups posix flags for commandline configuration
-func (cfg *ClientCfg) SetPFlags(prefix string) {
-	short := true
+func (cfg *ClientCfg) SetPFlags(short bool, prefix string) {
 	aprefix := ""
 	if prefix != "" {
-		short = false
 		aprefix = prefix + "."
 	}
 	if short {
