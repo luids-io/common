@@ -40,6 +40,25 @@ func APIServices(cfg *config.APIServicesCfg, logger yalogi.Logger) (*apiservice.
 	return services, nil
 }
 
+// APIAutoloader is a factory
+func APIAutoloader(cfg *config.APIServicesCfg, logger yalogi.Logger) (*apiservice.Autoloader, error) {
+	if cfg.Empty() {
+		return apiservice.NewAutoloader(
+			[]apiservice.Definition{},
+			apiservice.SetLogger(logger),
+		), nil
+	}
+	err := cfg.Validate()
+	if err != nil {
+		return nil, fmt.Errorf("bad config: %v", err)
+	}
+	defs, err := getServiceDefs(cfg, logger)
+	if err != nil {
+		return nil, fmt.Errorf("loading servicedefs: %v", err)
+	}
+	return apiservice.NewAutoloader(defs, apiservice.SetLogger(logger)), nil
+}
+
 func getServiceDefs(cfg *config.APIServicesCfg, logger yalogi.Logger) ([]apiservice.Definition, error) {
 	dbFiles, err := util.GetFilesDB("json", cfg.ConfigFiles, cfg.ConfigDirs)
 	if err != nil {

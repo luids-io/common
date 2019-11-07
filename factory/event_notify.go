@@ -11,7 +11,7 @@ import (
 )
 
 // EventNotify is a factory for an event notifier using apiservice
-func EventNotify(cfg *config.EventNotifyCfg, registry *apiservice.Registry) (event.Notifier, error) {
+func EventNotify(cfg *config.EventNotifyCfg, registry apiservice.Discover) (event.Notifier, error) {
 	err := cfg.Validate()
 	if err != nil {
 		return nil, fmt.Errorf("invalid event notify config: %v", err)
