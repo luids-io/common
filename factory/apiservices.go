@@ -44,7 +44,7 @@ func APIServices(cfg *config.APIServicesCfg, logger yalogi.Logger) (*apiservice.
 func APIAutoloader(cfg *config.APIServicesCfg, logger yalogi.Logger) (*apiservice.Autoloader, error) {
 	if cfg.Empty() {
 		return apiservice.NewAutoloader(
-			[]apiservice.Definition{},
+			[]apiservice.ServiceDef{},
 			apiservice.SetLogger(logger),
 		), nil
 	}
@@ -59,12 +59,12 @@ func APIAutoloader(cfg *config.APIServicesCfg, logger yalogi.Logger) (*apiservic
 	return apiservice.NewAutoloader(defs, apiservice.SetLogger(logger)), nil
 }
 
-func getServiceDefs(cfg *config.APIServicesCfg, logger yalogi.Logger) ([]apiservice.Definition, error) {
+func getServiceDefs(cfg *config.APIServicesCfg, logger yalogi.Logger) ([]apiservice.ServiceDef, error) {
 	dbFiles, err := util.GetFilesDB("json", cfg.ConfigFiles, cfg.ConfigDirs)
 	if err != nil {
 		return nil, err
 	}
-	loadedDB := make([]apiservice.Definition, 0)
+	loadedDB := make([]apiservice.ServiceDef, 0)
 	for _, file := range dbFiles {
 		logger.Debugf("loading file '%s'", file)
 		entries, err := apiservice.DefsFromFile(file)
