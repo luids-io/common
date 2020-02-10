@@ -18,6 +18,7 @@ type HealthCfg struct {
 	ListenURI string
 	Allowed   []string
 	Metrics   bool
+	Profile   bool
 }
 
 // SetPFlags setups posix flags for commandline configuration
@@ -28,6 +29,7 @@ func (cfg *HealthCfg) SetPFlags(short bool, prefix string) {
 	}
 	pflag.StringVar(&cfg.ListenURI, aprefix+"listenuri", cfg.ListenURI, "Health and metrics socket.")
 	pflag.BoolVar(&cfg.Metrics, aprefix+"metrics", cfg.Metrics, "Expose prometheus metrics.")
+	pflag.BoolVar(&cfg.Profile, aprefix+"profile", cfg.Metrics, "Expose pprof profiles.")
 	pflag.StringSliceVar(&cfg.Allowed, aprefix+"allowed", cfg.Allowed, "List of allowed IPs or CIDRs.")
 }
 
@@ -39,6 +41,7 @@ func (cfg *HealthCfg) BindViper(v *viper.Viper, prefix string) {
 	}
 	util.BindViper(v, aprefix+"listenuri")
 	util.BindViper(v, aprefix+"metrics")
+	util.BindViper(v, aprefix+"profile")
 	util.BindViper(v, aprefix+"allowed")
 }
 
@@ -50,6 +53,7 @@ func (cfg *HealthCfg) FromViper(v *viper.Viper, prefix string) {
 	}
 	cfg.ListenURI = v.GetString(aprefix + "listenuri")
 	cfg.Metrics = v.GetBool(aprefix + "metrics")
+	cfg.Profile = v.GetBool(aprefix + "profile")
 	cfg.Allowed = v.GetStringSlice(aprefix + "allowed")
 }
 
@@ -61,7 +65,7 @@ func (cfg HealthCfg) Empty() bool {
 	if cfg.Allowed != nil && len(cfg.Allowed) > 0 {
 		return false
 	}
-	if cfg.Metrics {
+	if cfg.Metrics || cfg.Profile {
 		return false
 	}
 	return true

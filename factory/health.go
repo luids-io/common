@@ -27,6 +27,7 @@ func Health(cfg *config.HealthCfg, srv httphealth.Pingable, logger yalogi.Logger
 	health := httphealth.New(srv,
 		httphealth.SetLogger(logger),
 		httphealth.Metrics(cfg.Metrics),
+		httphealth.Profile(cfg.Profile),
 		httphealth.SetIPFilter(ipfilter.Whitelist(cfg.Allowed)))
 	return hlis, health, nil
 }
