@@ -6,12 +6,11 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/luisguillenc/httphealth"
-	"github.com/luisguillenc/ipfilter"
-	"github.com/luisguillenc/yalogi"
-
 	"github.com/luids-io/common/config"
 	"github.com/luids-io/common/util"
+	"github.com/luids-io/core/utils/httphealth"
+	"github.com/luids-io/core/utils/ipfilter"
+	"github.com/luids-io/core/utils/yalogi"
 )
 
 // Health is a factory for an http server

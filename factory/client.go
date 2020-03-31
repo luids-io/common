@@ -6,10 +6,10 @@ import (
 	"fmt"
 
 	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
-	"github.com/luisguillenc/grpctls"
 	"google.golang.org/grpc"
 
 	"github.com/luids-io/common/config"
+	"github.com/luids-io/core/utils/grpctls"
 )
 
 // ClientConn is a factory for a grpc dial collector

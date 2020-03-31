@@ -5,11 +5,11 @@ package config
 import (
 	"fmt"
 
-	"github.com/luisguillenc/grpctls"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 
 	"github.com/luids-io/common/util"
+	"github.com/luids-io/core/utils/grpctls"
 )
 
 // ClientCfg stores grpc client preferences

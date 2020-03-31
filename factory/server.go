@@ -8,12 +8,12 @@ import (
 
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
-	"github.com/luisguillenc/grpctls"
-	"github.com/luisguillenc/ipfilter"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 
 	"github.com/luids-io/common/config"
+	"github.com/luids-io/core/utils/grpctls"
+	"github.com/luids-io/core/utils/ipfilter"
 )
 
 // Server is a factory for a grpc server

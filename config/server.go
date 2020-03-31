@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/luisguillenc/grpctls"
+	"github.com/luids-io/core/utils/grpctls"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 
