@@ -43,6 +43,8 @@ func Logger(cfg *config.LoggerCfg, debug bool) (yalogi.Logger, error) {
 	}
 	logger.SetLevel(level)
 	switch strings.ToLower(cfg.Format) {
+	case "log":
+		logger.SetFormatter(&logrus.TextFormatter{DisableTimestamp: true})
 	case "text":
 		logger.SetFormatter(&logrus.TextFormatter{})
 	case "json":

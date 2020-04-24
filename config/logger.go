@@ -66,6 +66,7 @@ func (cfg LoggerCfg) Validate() error {
 	case "": //ok
 	case "json": //ok
 	case "text": //ok
+	case "log": //ok
 	default:
 		return errors.New("invalid format value")
 	}
