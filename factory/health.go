@@ -8,9 +8,9 @@ import (
 
 	"github.com/luids-io/common/config"
 	"github.com/luids-io/common/util"
-	"github.com/luids-io/core/utils/httphealth"
-	"github.com/luids-io/core/utils/ipfilter"
-	"github.com/luids-io/core/utils/yalogi"
+	"github.com/luids-io/core/httphealth"
+	"github.com/luids-io/core/ipfilter"
+	"github.com/luids-io/core/yalogi"
 )
 
 // Health is a factory for an http server

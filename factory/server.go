@@ -14,8 +14,8 @@ import (
 	"google.golang.org/grpc/credentials"
 
 	"github.com/luids-io/common/config"
-	"github.com/luids-io/core/utils/grpctls"
-	"github.com/luids-io/core/utils/ipfilter"
+	"github.com/luids-io/core/grpctls"
+	"github.com/luids-io/core/ipfilter"
 )
 
 // ErrURIServerExists defines error when a server for the uri was created

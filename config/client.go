@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/viper"
 
 	"github.com/luids-io/common/util"
-	"github.com/luids-io/core/utils/grpctls"
+	"github.com/luids-io/core/grpctls"
 )
 
 // ClientCfg stores grpc client preferences

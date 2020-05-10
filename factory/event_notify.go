@@ -5,9 +5,9 @@ package factory
 import (
 	"fmt"
 
+	"github.com/luids-io/api/event"
 	"github.com/luids-io/common/config"
 	"github.com/luids-io/core/apiservice"
-	"github.com/luids-io/core/event"
 )
 
 // EventNotify is a factory for an event notifier using apiservice

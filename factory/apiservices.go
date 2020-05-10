@@ -8,7 +8,7 @@ import (
 	"github.com/luids-io/common/config"
 	"github.com/luids-io/common/util"
 	"github.com/luids-io/core/apiservice"
-	"github.com/luids-io/core/utils/yalogi"
+	"github.com/luids-io/core/yalogi"
 )
 
 // APIServices is a factory

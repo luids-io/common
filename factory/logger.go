@@ -11,7 +11,7 @@ import (
 	"github.com/sirupsen/logrus"
 
 	"github.com/luids-io/common/config"
-	"github.com/luids-io/core/utils/yalogi"
+	"github.com/luids-io/core/yalogi"
 )
 
 // Logger is a factory for a logger

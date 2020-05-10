@@ -7,11 +7,11 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/luids-io/core/utils/grpctls"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 
 	"github.com/luids-io/common/util"
+	"github.com/luids-io/core/grpctls"
 )
 
 // ServerCfg stores server preferences

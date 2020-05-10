@@ -9,7 +9,7 @@ import (
 	"google.golang.org/grpc"
 
 	"github.com/luids-io/common/config"
-	"github.com/luids-io/core/utils/grpctls"
+	"github.com/luids-io/core/grpctls"
 )
 
 // ClientConn is a factory for a grpc dial collector
