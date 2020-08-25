@@ -31,8 +31,7 @@ func Logger(cfg *config.LoggerCfg, debug bool) (yalogi.Logger, error) {
 				if gopath == "" {
 					gopath = fmt.Sprintf("%s/go", os.Getenv("HOME"))
 				}
-				repopath := fmt.Sprintf("%s/src/github.com/luids-io", gopath)
-				filename := strings.Replace(f.File, repopath, "~", -1)
+				filename := strings.Replace(f.File, gopath, "/go", -1)
 				function := f.Function
 				fpath := strings.Split(f.Function, "/")
 				if len(fpath) > 0 {
