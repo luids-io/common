@@ -14,8 +14,9 @@ import (
 
 // EventNotifyCfg stores event notify client (using apiservice)
 type EventNotifyCfg struct {
-	Service string
-	Buffer  int
+	Service  string
+	Instance string
+	Buffer   int
 }
 
 // SetPFlags setups posix flags for commandline configuration
@@ -25,6 +26,7 @@ func (cfg *EventNotifyCfg) SetPFlags(short bool, prefix string) {
 		aprefix = prefix + "."
 	}
 	pflag.StringVar(&cfg.Service, aprefix+"service", cfg.Service, "API Service ID.")
+	pflag.StringVar(&cfg.Instance, aprefix+"instance", cfg.Instance, "Instance name.")
 	pflag.IntVar(&cfg.Buffer, aprefix+"buffer", cfg.Buffer, "Buffer size.")
 }
 
@@ -35,6 +37,7 @@ func (cfg *EventNotifyCfg) BindViper(v *viper.Viper, prefix string) {
 		aprefix = prefix + "."
 	}
 	util.BindViper(v, aprefix+"service")
+	util.BindViper(v, aprefix+"instance")
 	util.BindViper(v, aprefix+"buffer")
 }
 
@@ -45,6 +48,7 @@ func (cfg *EventNotifyCfg) FromViper(v *viper.Viper, prefix string) {
 		aprefix = prefix + "."
 	}
 	cfg.Service = v.GetString(aprefix + "service")
+	cfg.Instance = v.GetString(aprefix + "instance")
 	cfg.Buffer = v.GetInt(aprefix + "buffer")
 }
 
