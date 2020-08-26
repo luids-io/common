@@ -11,7 +11,7 @@ import (
 	"github.com/luids-io/core/yalogi"
 )
 
-// APIServices is a factory
+// APIServices is a factory of an APIService Registry.
 func APIServices(cfg *config.APIServicesCfg, logger yalogi.Logger) (*apiservice.Registry, error) {
 	if cfg.Empty() {
 		return apiservice.NewRegistry(), nil
@@ -39,13 +39,10 @@ func APIServices(cfg *config.APIServicesCfg, logger yalogi.Logger) (*apiservice.
 	return services, nil
 }
 
-// APIAutoloader is a factory
+// APIAutoloader is a factory of an APIService Autoloader .
 func APIAutoloader(cfg *config.APIServicesCfg, logger yalogi.Logger) (*apiservice.Autoloader, error) {
 	if cfg.Empty() {
-		return apiservice.NewAutoloader(
-			[]apiservice.ServiceDef{},
-			apiservice.SetLogger(logger),
-		), nil
+		return apiservice.NewAutoloader([]apiservice.ServiceDef{}, apiservice.SetLogger(logger)), nil
 	}
 	err := cfg.Validate()
 	if err != nil {
@@ -55,7 +52,15 @@ func APIAutoloader(cfg *config.APIServicesCfg, logger yalogi.Logger) (*apiservic
 	if err != nil {
 		return nil, fmt.Errorf("loading servicedefs: %v", err)
 	}
-	return apiservice.NewAutoloader(defs, apiservice.SetLogger(logger)), nil
+	autodefs := make([]apiservice.ServiceDef, 0, len(defs))
+	for _, def := range defs {
+		if def.Disabled {
+			logger.Debugf("'%s' is disabled", def.ID)
+			continue
+		}
+		autodefs = append(autodefs, def)
+	}
+	return apiservice.NewAutoloader(autodefs, apiservice.SetLogger(logger)), nil
 }
 
 func getServiceDefs(cfg *config.APIServicesCfg, logger yalogi.Logger) ([]apiservice.ServiceDef, error) {
@@ -66,7 +71,7 @@ func getServiceDefs(cfg *config.APIServicesCfg, logger yalogi.Logger) ([]apiserv
 	loadedDB := make([]apiservice.ServiceDef, 0)
 	for _, file := range dbFiles {
 		logger.Debugf("loading file '%s'", file)
-		entries, err := apiservice.DefsFromFile(file)
+		entries, err := apiservice.ServiceDefsFromFile(file)
 		if err != nil {
 			return nil, fmt.Errorf("loading file '%s': %v", file, err)
 		}

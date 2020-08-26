@@ -12,7 +12,7 @@ import (
 	"github.com/luids-io/core/grpctls"
 )
 
-// ClientConn is a factory for a grpc dial collector
+// ClientConn is a factory for a grpc dial collector.
 func ClientConn(cfg *config.ClientCfg) (*grpc.ClientConn, error) {
 	err := cfg.Validate()
 	if err != nil {

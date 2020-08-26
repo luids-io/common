@@ -13,14 +13,14 @@ import (
 	"github.com/luids-io/common/util"
 )
 
-// APIServicesCfg stores services
+// APIServicesCfg stores api services configuration.
 type APIServicesCfg struct {
 	ConfigDirs  []string
 	ConfigFiles []string
 	CertsDir    string
 }
 
-// SetPFlags setups posix flags for commandline configuration
+// SetPFlags setups posix flags for commandline configuration.
 func (cfg *APIServicesCfg) SetPFlags(short bool, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -31,7 +31,7 @@ func (cfg *APIServicesCfg) SetPFlags(short bool, prefix string) {
 	pflag.StringVar(&cfg.CertsDir, aprefix+"certsdir", cfg.CertsDir, "Base path to certificate files.")
 }
 
-// BindViper setups posix flags for commandline configuration and bind to viper
+// BindViper setups posix flags for commandline configuration and bind to viper.
 func (cfg *APIServicesCfg) BindViper(v *viper.Viper, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -42,7 +42,7 @@ func (cfg *APIServicesCfg) BindViper(v *viper.Viper, prefix string) {
 	util.BindViper(v, aprefix+"certsdir")
 }
 
-// FromViper fill values from viper
+// FromViper fill values from viper.
 func (cfg *APIServicesCfg) FromViper(v *viper.Viper, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -53,7 +53,7 @@ func (cfg *APIServicesCfg) FromViper(v *viper.Viper, prefix string) {
 	cfg.CertsDir = v.GetString(aprefix + "certsdir")
 }
 
-// Empty returns true if configuration is empty
+// Empty returns true if configuration is empty.
 func (cfg APIServicesCfg) Empty() bool {
 	if len(cfg.ConfigFiles) > 0 {
 		return false
@@ -64,7 +64,7 @@ func (cfg APIServicesCfg) Empty() bool {
 	return true
 }
 
-// Validate checks that configuration is ok
+// Validate checks that configuration is ok.
 func (cfg APIServicesCfg) Validate() error {
 	empty := true
 	for _, file := range cfg.ConfigFiles {
@@ -94,7 +94,7 @@ func (cfg APIServicesCfg) Validate() error {
 	return nil
 }
 
-// Dump configuration
+// Dump configuration.
 func (cfg APIServicesCfg) Dump() string {
 	return fmt.Sprintf("%+v", cfg)
 }

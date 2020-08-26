@@ -13,7 +13,7 @@ import (
 	"github.com/luids-io/core/yalogi"
 )
 
-// Health is a factory for an http server
+// Health is a factory for an http server.
 func Health(cfg *config.HealthCfg, srv httphealth.Pingable, logger yalogi.Logger) (net.Listener, *httphealth.Server, error) {
 	err := cfg.Validate()
 	if err != nil {

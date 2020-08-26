@@ -14,7 +14,7 @@ import (
 	"github.com/luids-io/core/yalogi"
 )
 
-// Logger is a factory for a logger
+// Logger is a factory for a logger.
 func Logger(cfg *config.LoggerCfg, debug bool) (yalogi.Logger, error) {
 	err := cfg.Validate()
 	if err != nil {

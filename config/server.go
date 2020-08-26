@@ -14,7 +14,7 @@ import (
 	"github.com/luids-io/core/grpctls"
 )
 
-// ServerCfg stores server preferences
+// ServerCfg stores server preferences.
 type ServerCfg struct {
 	ListenURI string
 	Allowed   []string
@@ -22,7 +22,7 @@ type ServerCfg struct {
 	Metrics   bool
 }
 
-// SetPFlags setups posix flags for commandline configuration
+// SetPFlags setups posix flags for commandline configuration.
 func (cfg *ServerCfg) SetPFlags(short bool, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -41,7 +41,7 @@ func (cfg *ServerCfg) SetPFlags(short bool, prefix string) {
 	pflag.BoolVar(&cfg.Metrics, aprefix+"metrics", cfg.Metrics, "Enable metrics.")
 }
 
-// BindViper setups posix flags for commandline configuration and bind to viper
+// BindViper setups posix flags for commandline configuration and bind to viper.
 func (cfg *ServerCfg) BindViper(v *viper.Viper, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -56,7 +56,7 @@ func (cfg *ServerCfg) BindViper(v *viper.Viper, prefix string) {
 	util.BindViper(v, aprefix+"metrics")
 }
 
-// FromViper fill values from viper
+// FromViper fill values from viper.
 func (cfg *ServerCfg) FromViper(v *viper.Viper, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -71,7 +71,7 @@ func (cfg *ServerCfg) FromViper(v *viper.Viper, prefix string) {
 	cfg.Metrics = v.GetBool(aprefix + "metrics")
 }
 
-// Empty returns true if configuration is empty
+// Empty returns true if configuration is empty.
 func (cfg ServerCfg) Empty() bool {
 	if cfg.ListenURI != "" {
 		return false
@@ -88,7 +88,7 @@ func (cfg ServerCfg) Empty() bool {
 	return true
 }
 
-// Validate checks that configuration is ok
+// Validate checks that configuration is ok.
 func (cfg *ServerCfg) Validate() error {
 	if cfg.ListenURI == "" {
 		return errors.New("listen uri is required")
@@ -112,7 +112,7 @@ func (cfg *ServerCfg) Validate() error {
 	return nil
 }
 
-// Dump configuration
+// Dump configuration.
 func (cfg ServerCfg) Dump() string {
 	return fmt.Sprintf("%+v", cfg)
 }

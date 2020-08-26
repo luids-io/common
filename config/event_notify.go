@@ -12,14 +12,14 @@ import (
 	"github.com/luids-io/common/util"
 )
 
-// EventNotifyCfg stores event notify client (using apiservice)
+// EventNotifyCfg stores event-notify client configuration.
 type EventNotifyCfg struct {
 	Service  string
 	Instance string
 	Buffer   int
 }
 
-// SetPFlags setups posix flags for commandline configuration
+// SetPFlags setups posix flags for commandline configuration.
 func (cfg *EventNotifyCfg) SetPFlags(short bool, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -30,7 +30,7 @@ func (cfg *EventNotifyCfg) SetPFlags(short bool, prefix string) {
 	pflag.IntVar(&cfg.Buffer, aprefix+"buffer", cfg.Buffer, "Buffer size.")
 }
 
-// BindViper setups posix flags for commandline configuration and bind to viper
+// BindViper setups posix flags for commandline configuration and bind to viper.
 func (cfg *EventNotifyCfg) BindViper(v *viper.Viper, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -41,7 +41,7 @@ func (cfg *EventNotifyCfg) BindViper(v *viper.Viper, prefix string) {
 	util.BindViper(v, aprefix+"buffer")
 }
 
-// FromViper fill values from viper
+// FromViper fill values from viper.
 func (cfg *EventNotifyCfg) FromViper(v *viper.Viper, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -52,7 +52,7 @@ func (cfg *EventNotifyCfg) FromViper(v *viper.Viper, prefix string) {
 	cfg.Buffer = v.GetInt(aprefix + "buffer")
 }
 
-// Empty returns true if configuration is empty
+// Empty returns true if configuration is empty.
 func (cfg EventNotifyCfg) Empty() bool {
 	if cfg.Service != "" {
 		return false
@@ -60,7 +60,7 @@ func (cfg EventNotifyCfg) Empty() bool {
 	return true
 }
 
-// Validate checks that configuration is ok
+// Validate checks that configuration is ok.
 func (cfg EventNotifyCfg) Validate() error {
 	if cfg.Service == "" {
 		return errors.New("service name required")
@@ -71,7 +71,7 @@ func (cfg EventNotifyCfg) Validate() error {
 	return nil
 }
 
-// Dump configuration
+// Dump configuration.
 func (cfg EventNotifyCfg) Dump() string {
 	return fmt.Sprintf("%+v", cfg)
 }

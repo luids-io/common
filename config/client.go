@@ -12,14 +12,14 @@ import (
 	"github.com/luids-io/core/grpctls"
 )
 
-// ClientCfg stores grpc client preferences
+// ClientCfg stores grpc client preferences.
 type ClientCfg struct {
 	RemoteURI string
 	TLS       grpctls.ClientCfg
 	Metrics   bool
 }
 
-// SetPFlags setups posix flags for commandline configuration
+// SetPFlags setups posix flags for commandline configuration.
 func (cfg *ClientCfg) SetPFlags(short bool, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -39,7 +39,7 @@ func (cfg *ClientCfg) SetPFlags(short bool, prefix string) {
 	pflag.BoolVar(&cfg.Metrics, aprefix+"metrics", cfg.Metrics, "Enable metrics.")
 }
 
-// BindViper and bind to viper
+// BindViper and bind to viper.
 func (cfg *ClientCfg) BindViper(v *viper.Viper, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -55,7 +55,7 @@ func (cfg *ClientCfg) BindViper(v *viper.Viper, prefix string) {
 	util.BindViper(v, aprefix+"metrics")
 }
 
-// FromViper fill values from viper
+// FromViper fill values from viper.
 func (cfg *ClientCfg) FromViper(v *viper.Viper, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -71,7 +71,7 @@ func (cfg *ClientCfg) FromViper(v *viper.Viper, prefix string) {
 	cfg.Metrics = v.GetBool(aprefix + "metrics")
 }
 
-// Empty returns true if configuration is empty
+// Empty returns true if configuration is empty.
 func (cfg ClientCfg) Empty() bool {
 	if cfg.RemoteURI != "" {
 		return false
@@ -82,7 +82,7 @@ func (cfg ClientCfg) Empty() bool {
 	return true
 }
 
-// Validate checks that configuration is ok
+// Validate checks that configuration is ok.
 func (cfg ClientCfg) Validate() error {
 	_, _, err := grpctls.ParseURI(cfg.RemoteURI)
 	if err != nil {
@@ -94,7 +94,7 @@ func (cfg ClientCfg) Validate() error {
 	return nil
 }
 
-// Dump configuration
+// Dump configuration.
 func (cfg ClientCfg) Dump() string {
 	return fmt.Sprintf("%+v", cfg)
 }

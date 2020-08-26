@@ -10,7 +10,7 @@ import (
 	"github.com/luids-io/core/apiservice"
 )
 
-// EventNotify is a factory for an event notifier using apiservice
+// EventNotify is a factory for an event notifier.
 func EventNotify(cfg *config.EventNotifyCfg, registry apiservice.Discover) (event.Notifier, error) {
 	err := cfg.Validate()
 	if err != nil {

@@ -13,13 +13,13 @@ import (
 	"github.com/luids-io/common/util"
 )
 
-// LoggerCfg stores logger configuration preferences
+// LoggerCfg stores logger configuration preferences.
 type LoggerCfg struct {
 	Level  string
 	Format string
 }
 
-// SetPFlags setups posix flags for commandline configuration
+// SetPFlags setups posix flags for commandline configuration.
 func (cfg *LoggerCfg) SetPFlags(short bool, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -29,7 +29,7 @@ func (cfg *LoggerCfg) SetPFlags(short bool, prefix string) {
 	pflag.StringVar(&cfg.Format, aprefix+"format", cfg.Format, "Log format.")
 }
 
-// BindViper setups posix flags for commandline configuration and bind to viper
+// BindViper setups posix flags for commandline configuration and bind to viper.
 func (cfg *LoggerCfg) BindViper(v *viper.Viper, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -39,7 +39,7 @@ func (cfg *LoggerCfg) BindViper(v *viper.Viper, prefix string) {
 	util.BindViper(v, aprefix+"fomat")
 }
 
-// FromViper fill values from viper
+// FromViper fill values from viper.
 func (cfg *LoggerCfg) FromViper(v *viper.Viper, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -60,7 +60,7 @@ func (cfg LoggerCfg) Empty() bool {
 	return true
 }
 
-// Validate checks that configuration is ok
+// Validate checks that configuration is ok.
 func (cfg LoggerCfg) Validate() error {
 	switch strings.ToLower(cfg.Format) {
 	case "": //ok
@@ -83,7 +83,7 @@ func (cfg LoggerCfg) Validate() error {
 	return errors.New("invalid level value")
 }
 
-// Dump configuration
+// Dump configuration.
 func (cfg LoggerCfg) Dump() string {
 	return fmt.Sprintf("%+v", cfg)
 }

@@ -18,7 +18,7 @@ import (
 	"github.com/luids-io/core/ipfilter"
 )
 
-// ErrURIServerExists defines error when a server for the uri was created
+// ErrURIServerExists defines error when a server for the uri was created.
 var ErrURIServerExists = errors.New("uri server already exists")
 
 // Server is a factory for a grpc server

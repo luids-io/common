@@ -13,7 +13,7 @@ import (
 	"github.com/luids-io/common/util"
 )
 
-// HealthCfg stores http health server preferences
+// HealthCfg stores http health server preferences.
 type HealthCfg struct {
 	ListenURI string
 	Allowed   []string
@@ -21,7 +21,7 @@ type HealthCfg struct {
 	Profile   bool
 }
 
-// SetPFlags setups posix flags for commandline configuration
+// SetPFlags setups posix flags for commandline configuration.
 func (cfg *HealthCfg) SetPFlags(short bool, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -33,7 +33,7 @@ func (cfg *HealthCfg) SetPFlags(short bool, prefix string) {
 	pflag.StringSliceVar(&cfg.Allowed, aprefix+"allowed", cfg.Allowed, "List of allowed IPs or CIDRs.")
 }
 
-// BindViper setups posix flags for commandline configuration and bind to viper
+// BindViper setups posix flags for commandline configuration and bind to viper.
 func (cfg *HealthCfg) BindViper(v *viper.Viper, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -45,7 +45,7 @@ func (cfg *HealthCfg) BindViper(v *viper.Viper, prefix string) {
 	util.BindViper(v, aprefix+"allowed")
 }
 
-// FromViper fill values from viper
+// FromViper fill values from viper.
 func (cfg *HealthCfg) FromViper(v *viper.Viper, prefix string) {
 	aprefix := ""
 	if prefix != "" {
@@ -57,7 +57,7 @@ func (cfg *HealthCfg) FromViper(v *viper.Viper, prefix string) {
 	cfg.Allowed = v.GetStringSlice(aprefix + "allowed")
 }
 
-// Empty returns true if configuration is empty
+// Empty returns true if configuration is empty.
 func (cfg HealthCfg) Empty() bool {
 	if cfg.ListenURI != "" {
 		return false
@@ -71,7 +71,7 @@ func (cfg HealthCfg) Empty() bool {
 	return true
 }
 
-// Validate checks that configuration is ok
+// Validate checks that configuration is ok.
 func (cfg HealthCfg) Validate() error {
 	if cfg.ListenURI == "" {
 		return errors.New("listenuri is required")
@@ -92,7 +92,7 @@ func (cfg HealthCfg) Validate() error {
 	return nil
 }
 
-// Dump configuration
+// Dump configuration.
 func (cfg HealthCfg) Dump() string {
 	return fmt.Sprintf("%+v", cfg)
 }
